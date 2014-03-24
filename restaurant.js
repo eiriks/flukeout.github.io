@@ -3,6 +3,7 @@ var currentLevel = parseInt(localStorage.currentLevel) || 0;
 var levelTimeout = 1000;
 var fails = 0;
 
+
 $(document).ready(function(){
 
   $(".note-toggle").on("click", function(){
@@ -37,7 +38,7 @@ $(document).ready(function(){
   });
 
   //Add tooltips
-  $(".table").on("mouseover","*",function(e){
+  $(".spisebord").on("mouseover","*",function(e){
     e.stopPropagation();
     showTooltip($(this));
   });
@@ -46,11 +47,11 @@ $(document).ready(function(){
   $(".markup").on("mouseover","div *",function(e){
 
     el = $(this);
-    console.log(el);
+    //console.log(el);
     var markupElements = $(".markup *");
     var index = markupElements.index(el) -1;
 
-    showTooltip($(".table *").eq(index));
+    showTooltip($(".spisebord *").eq(index));
     e.stopPropagation();
   });
 
@@ -60,7 +61,7 @@ $(document).ready(function(){
     hideTooltip();
   });
 
-  $(".table").on("mouseout","*",function(e){
+  $(".spisebord").on("mouseout","*",function(e){
     hideTooltip();
     e.stopPropagation();
   });
@@ -101,7 +102,7 @@ function hideTooltip(){
 
 function showTooltip(el){
   el.attr("data-hovered",true);
-  var tableElements = $(".table *");
+  var tableElements = $(".spisebord *");
   var index = tableElements.index(el);
   var that = el;
   $(".markup > div *").eq(index).addClass("enhance").find("*").addClass("enhance");
@@ -157,6 +158,7 @@ function handleInput(text){
   if(text == ""){
     text = "blammojammo";
   }
+  //console.log(text);
 
   if(parseInt(text) > 0 && parseInt(text) < levels.length+1) {
     currentLevel = parseInt(text) -1;
@@ -164,7 +166,7 @@ function handleInput(text){
     return;
   }
 
-  if(text == "help") {
+  if(text == "help" || text == "hjelp") {
     showHelp();
   } else {
     fireRule(text);
@@ -202,11 +204,11 @@ function resetTable(){
   $(".clean,.strobe").removeClass("clean,strobe");
   $(".clean,.strobe").removeClass("clean,strobe");
   $("input").addClass("input-strobe");
-  $(".table *").each(function(){
+  $(".spisebord *").each(function(){
     $(this).width($(this).width());
     $(this).removeAttr("style");
   });
-  $(".table-edge").width($(".table").outerWidth());
+  $(".table-edge").width($(".spisebord").outerWidth());
 }
 
 function fireRule(rule) {
@@ -236,7 +238,7 @@ function fireRule(rule) {
   * Relatedly, watching that happen made me nearly spill my drink.
   */
 
-  var baseTable = $('.table-wrapper > .table');
+  var baseTable = $('.table-wrapper > .spisebord');
 
   var ruleSelected = $(".table-wrapper " + rule).not(baseTable);
   var levelSelected = $(".table-wrapper " + level.selector).not(baseTable);
@@ -288,12 +290,13 @@ function fireRule(rule) {
 }
 
 function winGame(){
-  $(".table").html('<span class="winner"><strong>You did it!</strong><br>You are a CSS God.</span>');
+  $(".spisebord").html('<span class="winner"><strong>Du fikk det til!</strong><br>Du er en CSS Gud.</span>');
   resetTable();
 
 }
 
 function checkResults(ruleSelected,levelSelected){
+  //console.log(ruleSelected,levelSelected);
   for(var i = 0; i < ruleSelected.length; i++) {
     if(ruleSelected[i] == levelSelected[i]){
     } else {
@@ -326,40 +329,40 @@ function loadBoard(){
       markup = markup + "<div>&ltcarrot/&gt</div>";
     }
     if(c == "A") {
-      boardMarkup = boardMarkup + '<apple/>\n'
-      markup = markup + "<div>&ltapple/&gt</div>";
+      boardMarkup = boardMarkup + '<eple/>\n'
+      markup = markup + "<div>&lteple/&gt</div>";
     }
     if(c == "O") {
-      boardMarkup = boardMarkup + '<orange/>\n'
-      markup = markup + "<div>&ltorange/&gt</div>";
+      boardMarkup = boardMarkup + '<appelsin/>\n'
+      markup = markup + "<div>&ltappelsin/&gt</div>";
     }
     if(c == "P") {
-      boardMarkup = boardMarkup + '<pickle/>\n'
-      markup = markup + '<div>&ltpickle/&gt</div>';
+      boardMarkup = boardMarkup + '<agurk/>\n'
+      markup = markup + '<div>&ltagurk/&gt</div>';
     }
     if(c == "a") {
-      boardMarkup = boardMarkup + '<apple class="small"/>\n'
-      markup = markup + '<div>&ltapple class="small"/&gt</div>';
+      boardMarkup = boardMarkup + '<eple class="liten"/>\n'
+      markup = markup + '<div>&lteple class="liten"/&gt</div>';
     }
     if(c == "o") {
-      boardMarkup = boardMarkup + '<orange class="small"/>\n'
-      markup = markup + '<div>&ltorange class="small"/&gt</div>';
+      boardMarkup = boardMarkup + '<appelsin class="liten"/>\n'
+      markup = markup + '<div>&ltappelsin class="liten"/&gt</div>';
     }
     if(c == "p") {
-      boardMarkup = boardMarkup + '<pickle class="small"/>\n'
-      markup = markup + '<div>&ltpickle class="small"/&gt</div>';
+      boardMarkup = boardMarkup + '<agurk class="liten"/>\n'
+      markup = markup + '<div>&ltagurk class="liten"/&gt</div>';
     }
     if(c == "{") {
-      boardMarkup = boardMarkup + '<plate id="fancy">'
-      markup = markup + '<div>&ltplate id="fancy"/&gt';
+      boardMarkup = boardMarkup + '<tallerken id="fancy">'
+      markup = markup + '<div>&lttallerken id="fancy"&gt';
     }
     if(c == "(") {
-      boardMarkup = boardMarkup + '<plate>'
-      markup = markup + '<div>&ltplate&gt'
+      boardMarkup = boardMarkup + '<tallerken>'
+      markup = markup + '<div>&lttallerken&gt'
     }
     if(c == ")" || c == "}") {
-      boardMarkup = boardMarkup + '</plate>\n'
-      markup = markup + '&lt/plate&gt</div>'
+      boardMarkup = boardMarkup + '</tallerken>\n'
+      markup = markup + '&lt/tallerken&gt</div>'
     }
     if(c == "[") {
       boardMarkup = boardMarkup + '<bento>'
@@ -371,8 +374,8 @@ function loadBoard(){
     }
 
   }
-  $(".table").html(boardMarkup);
-  $(".markup").html('<div>&ltdiv class="table"&gt' + markup + '&lt/div&gt</div>');
+  $(".spisebord").html(boardMarkup);
+  $(".markup").html('<div>&ltdiv class="spisebord"&gt' + markup + '&lt/div&gt</div>');
 }
 
 //Loads up a level
@@ -406,6 +409,6 @@ function loadLevel(){
   $(".result").text("");
 
   //Strobe what's supposed to be selected
-  $(".table " + level.selector).addClass("strobe");
+  $(".spisebord " + level.selector).addClass("strobe");
 
 }
