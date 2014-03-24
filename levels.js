@@ -12,7 +12,7 @@
 
 var levels = [
   {
-    helpTitle : "Velg elementer etter deres type", //Select elements by their type
+    helpTitle : "Velg elementer etter type", //Select elements by their type
     selectorName : "Type-selektor", // Type Selector
     doThis : "Velg tallerkene", // Select the plates
     selector : "tallerken",

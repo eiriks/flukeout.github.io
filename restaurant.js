@@ -400,7 +400,7 @@ function loadLevel(){
   loadBoard();
   resetTable();
 
-  $(".level-header").html("Level " + (currentLevel+1) + " of " + levels.length);
+  $(".level-header").html("Nivå " + (currentLevel+1) + " av " + levels.length);
   $(".order").text(level.doThis);
   $("input").val("").focus();
 
