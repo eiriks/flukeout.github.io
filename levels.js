@@ -17,7 +17,7 @@ var levels = [
     doThis : "Velg tallerkene", // Select the plates
     selector : "tallerken",
     syntax : "A",
-    help : "Velg alle elementer av typen <strong>A</strong>. Type henviser til typen tagg, slik som <strong>div</strong>, <tag>p</tag> og <tag>ul</tag> alle er ulike typer.", // Selects all elements of type <strong>A</strong>. Type refers to the type of tag, so <tag>div</tag>, <tag>p</tag> and <tag>ul</tag> are all different element types.
+    help : "Velg alle elementer av typen <strong>A</strong>. Type henviser til typen tagg, slik som <strong>&lt;div&gt;</strong>, <strong>&lt;p&gt;</strong> og <strong>&lt;ul&gt;</strong> alle er ulike typer.", // Selects all elements of type <strong>A</strong>. Type refers to the type of tag, so <tag>div</tag>, <tag>p</tag> and <tag>ul</tag> are all different element types.
     examples : [
       '<strong>div</strong> velger alle <strong>&lt;div&gt;</strong> elementer.',
       '<strong>p</strong> velger alle <strong>&lt;p&gt;</strong> elementer.',
